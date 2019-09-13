@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int main(int argc, char *argv[]) {
+int main_single_link(int argc, char *argv[]) {
     SingleLinkNode *head = NULL;
     single_link_insert_node(&head, 11);
     single_link_insert_node(&head, 12);
