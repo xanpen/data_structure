@@ -22,4 +22,8 @@ int main (int argc, char *argv[]) {
     int selection_a[] = {4,5,6,3,2,1};
     selection_sort(selection_a, 6);
     print_array(selection_a, 6);
+    
+    int merge_a[] = {4,5,6,3,2,1,7,8,9,0};
+    merge_sort(merge_a, 0, 9);
+    print_array(merge_a, 10);
 }
