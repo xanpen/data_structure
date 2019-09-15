@@ -79,19 +79,6 @@ void selection_sort(int a[], int n) {
     }
 }
 
-//Print array
-void print_array(int a[], int n) {
-    for (int i = 0; i < n; ++i) {
-        if (i == 0) {
-            printf("%d", a[i]);
-        } else {
-            printf(",%d", a[i]);
-        }
-    }
-    printf("\n");
-}
-
-
 //Merge sort
 //递归公式：merge_sort(p, r) = merge(merge_sort(p, q), merge_sort(q+1, r))
 //终止条件：p>=r
@@ -145,4 +132,75 @@ void merge(int a[], int left, int middle, int right) {
     memcpy(a + left, tmp, (right - left + 1) * sizeof(int));
     free(tmp);
     return;
+}
+
+//快速排序地推公式：quick_sort(a, p, r) = quick_sort(a, p, q-1) + quick_sort(a, q+1, r)
+//终止条件：p >= r
+void quick_sort(int a[], int left, int right) {
+    int q;
+    int partition(int [], int, int);
+    if (left >= right) {
+        return;
+    }
+    q = partition(a, left, right);
+    quick_sort(a, left, q - 1);
+    quick_sort(a, q + 1, right);
+}
+
+//分区并返回分区点下标
+int partition(int a[], int left, int right) {
+    //分区点的值
+    int pivot = a[right];
+    int i = 0;
+    int j = 0;
+    void array_element_swap(int [], int, int);
+    
+    i = left;
+    for (j = left; j < right; ++j) {
+        if (a[j] < pivot) {
+            array_element_swap(a, i, j);
+            ++i;
+        }
+    }
+    array_element_swap(a, i, right);
+    return i;
+}
+
+//分区分治思想应用：如何在O（n）时间复杂度内，在无序数组a中查找第k大元素？
+int find_kth(int a[], int left, int right, int k) {
+    int partition(int a[], int left, int right);
+    int q;
+    
+    q = partition(a, left, right);
+    if (k == (q + 1)) {
+        return a[q];
+    } else if (k > (q + 1)) {
+        return find_kth(a, q + 1, right, k);
+    } else {
+        return find_kth(a, left, q - 1, k);
+    }
+}
+
+
+//Print array
+void print_array(int a[], int n) {
+    for (int i = 0; i < n; ++i) {
+        if (i == 0) {
+            printf("%d", a[i]);
+        } else {
+            printf(",%d", a[i]);
+        }
+    }
+    printf("\n");
+}
+// Array element swap
+void array_element_swap(int a[], int i, int j) {
+    int tmp = 0;
+    if (i == j) {
+        return;
+    }
+    
+    tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
 }

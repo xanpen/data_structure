@@ -26,4 +26,12 @@ int main (int argc, char *argv[]) {
     int merge_a[] = {4,5,6,3,2,1,7,8,9,0};
     merge_sort(merge_a, 0, 9);
     print_array(merge_a, 10);
+    
+    int quick_a[] = {4,5,6,3,2,1,7,8,9,0};
+    quick_sort(quick_a, 0, 9);
+    print_array(quick_a, 10);
+    
+    int kth_a[] = {4,2,5,12,3};
+    int kth = find_kth(kth_a, 0, 4, 3);
+    printf("kth: %d\n", kth);
 }
